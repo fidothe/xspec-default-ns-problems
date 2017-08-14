@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" 
+    xmlns:mp="http://ns.werkstatt.io/eg"
+    stylesheet="transform.xsl">
+    <x:scenario label="Scenario for testing a function">
+        <x:context>
+            <input>
+                <item>Hello</item>
+            </input>
+        </x:context>
+
+        <x:scenario label="establishing default NS context" xmlns="http://ns.werkstatt.io/eg">
+            <x:expect label="thing - direct">
+                <output>
+                    <thing>Hello</thing>
+                </output>
+            </x:expect>
+
+            <x:expect label="thing - test - explicit NS" test="count(/mp:output/mp:thing) = 1"/>
+            <x:expect label="thing - test - default NS" test="count(/output/thing) = 1" xmlns="http://ns.werkstatt.io/eg"/>
+            <x:expect label="thing - test - explicit default NS" test="count(/output/thing) = 1" xmlns="http://ns.werkstatt.io/eg"/>
+        </x:scenario>
+    </x:scenario>
+</x:description>
